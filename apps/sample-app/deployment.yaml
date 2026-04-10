@@ -1,12 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: sample-app
   namespace: default
   labels:
     app: sample-app
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: sample-app
@@ -27,3 +27,10 @@ spec:
             limits:
               cpu: "200m"
               memory: "256Mi"
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {}        # 無限等待，需手動 promote 或 rollback
+        - setWeight: 60
+        - pause: {}
