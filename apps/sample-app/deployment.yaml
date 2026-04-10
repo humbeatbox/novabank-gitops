@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: sample-app
   namespace: default
@@ -27,8 +27,3 @@ spec:
             limits:
               cpu: "200m"
               memory: "256Mi"
-  strategy:
-    blueGreen:
-      activeService: bluegreen-active
-      previewService: bluegreen-preview
-      autoPromotionEnabled: false
