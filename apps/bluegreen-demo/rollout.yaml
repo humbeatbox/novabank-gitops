@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: bluegreen-demo
-          image: argoproj/rollouts-demo:blue
+          image: argoproj/rollouts-demo:green
           ports:
             - containerPort: 8080
           resources:
@@ -31,4 +31,4 @@ spec:
     blueGreen:
       activeService: bluegreen-demo-active
       previewService: bluegreen-demo-preview
-      autoPromotionEnabled: false   # 錄影時手動 promote
+      autoPromotionEnabled: false
