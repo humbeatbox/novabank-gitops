@@ -28,9 +28,7 @@ spec:
               cpu: "200m"
               memory: "256Mi"
   strategy:
-    canary:
-      steps:
-        - setWeight: 20
-        - pause: {}        # 無限等待，需手動 promote 或 rollback
-        - setWeight: 60
-        - pause: {}
+    blueGreen:
+      activeService: bluegreen-active
+      previewService: bluegreen-preview
+      autoPromotionEnabled: false
